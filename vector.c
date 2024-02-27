@@ -99,8 +99,8 @@ int compute_total_unroll3(int* vec, int len) {
 }
 
 int compute_total_duff(int* vec, int len) {
-    int tot = 0;
-    int n = (len + 7) / 8;
+    register int tot = 0;
+    register int n = (len + 7) / 8;
 
     switch (len % 8) {
         case 0: do{ tot += *vec++;
@@ -123,6 +123,21 @@ int compute_total_parallel(int* vec, int len) {
     int times = len / 2;
 
     for (int i = 0; i < times; i++) {
+        tot1 += vec[i];
+        tot2 += vec[i+1];
+    }
+
+    if (len % 2 == 1) tot1 += vec[len-1];
+
+    return tot1 + tot2;
+}
+
+int compute_total_parallel2(int* vec, int len) {
+    int tot1 = 0;
+    int tot2 = 0;
+    int times = len / 2;
+
+    for (int i = 0; i < times; i++) {
         tot1 += *vec++;
         tot2 += *vec++;
     }
@@ -132,7 +147,7 @@ int compute_total_parallel(int* vec, int len) {
     return tot1 + tot2;
 }
 
-int compute_total_parallel2(int* vec, int len) {
+int compute_total_parallel3(int* vec, int len) {
     int tot1 = 0;
     int tot2 = 0;
     int* end = vec + len - 1;
@@ -161,5 +176,6 @@ int main() {
     printf("Average time for duff: %d\n", measure_time(compute_total_duff, 100, vec, BUFFER_SIZE));
     printf("Average time for parallel: %d\n", measure_time(compute_total_parallel, 100, vec, BUFFER_SIZE));
     printf("Average time for parallel2: %d\n", measure_time(compute_total_parallel2, 100, vec, BUFFER_SIZE));
+    printf("Average time for parallel3: %d\n", measure_time(compute_total_parallel3, 100, vec, BUFFER_SIZE));
 }
 
