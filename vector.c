@@ -120,9 +120,8 @@ int compute_total_duff(int* vec, int len) {
 int compute_total_parallel(int* vec, int len) {
     int tot1 = 0;
     int tot2 = 0;
-    int times = len / 2;
 
-    for (int i = 0; i < times; i++) {
+    for (int i = 0; i < len - 1; i += 2) {
         tot1 += vec[i];
         tot2 += vec[i+1];
     }
