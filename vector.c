@@ -156,7 +156,7 @@ int main() {
     printf("Average time for naive: %d\n", measure_time(compute_total_naive, 100, vec, BUFFER_SIZE));
     printf("Average time for ptr: %d\n", measure_time(compute_total_ptr, 100, vec, BUFFER_SIZE));
     printf("Average time for unroll: %d\n", measure_time(compute_total_unroll, 100, vec, BUFFER_SIZE));
-    printf("average time for unroll2: %d\n", measure_time(compute_total_unroll2, 100, vec, BUFFER_SIZE));
+    printf("Average time for unroll2: %d\n", measure_time(compute_total_unroll2, 100, vec, BUFFER_SIZE));
     printf("Average time for unroll3: %d\n", measure_time(compute_total_unroll3, 100, vec, BUFFER_SIZE));
     printf("Average time for duff: %d\n", measure_time(compute_total_duff, 100, vec, BUFFER_SIZE));
     printf("Average time for parallel: %d\n", measure_time(compute_total_parallel, 100, vec, BUFFER_SIZE));
