@@ -43,7 +43,14 @@ int* create_vec(int len) {
 int compute_total_naive(int* vec, int len) {
     int tot = 0;
     for (int i = 0; i < len; i++)
-        tot = tot + vec[i];
+        tot += vec[i];
+    return tot;
+}
+
+int compute_total_ptr(int* vec, int len) {
+    int tot = 0;
+    for (int i = 0; i < len; i++)
+        tot += *vec++;
     return tot;
 }
 
@@ -147,6 +154,7 @@ int main() {
     int* vec = create_vec(BUFFER_SIZE);
 
     printf("Average time for naive: %d\n", measure_time(compute_total_naive, 100, vec, BUFFER_SIZE));
+    printf("Average time for ptr: %d\n", measure_time(compute_total_ptr, 100, vec, BUFFER_SIZE));
     printf("Average time for unroll: %d\n", measure_time(compute_total_unroll, 100, vec, BUFFER_SIZE));
     printf("average time for unroll2: %d\n", measure_time(compute_total_unroll2, 100, vec, BUFFER_SIZE));
     printf("average time for unroll3: %d\n", measure_time(compute_total_unroll3, 100, vec, BUFFER_SIZE));

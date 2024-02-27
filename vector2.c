@@ -7,12 +7,12 @@
 #define BUFFER_SIZE 1000000
 
 int measure_time_once(void (*fun)(int*, int, int*), int* vec, int len, int* dest) {
-	struct timeval startTime;
-	struct timeval endTime;
-	struct rusage ru;
-
-	getrusage(RUSAGE_SELF, &ru); // start timer
-	startTime = ru.ru_utime;
+    struct timeval startTime;
+    struct timeval endTime;
+    struct rusage ru;
+    
+    getrusage(RUSAGE_SELF, &ru); // start timer
+    startTime = ru.ru_utime;
 
     fun(vec, len, dest);
 
@@ -47,7 +47,7 @@ void compute_total_dest_naive(int* vec, int len, int* dest) {
 }
 
 void compute_total_dest_buffer(int* vec, int len, int* dest) {
-    register int tot = 0;
+    int tot = 0;
     for (int i = 0; i < len; i++)
         tot += *vec++;
     *dest = tot;
