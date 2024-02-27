@@ -55,9 +55,7 @@ void mult_mats_copy(int* m1, int* m2, int* res, int len) {
 
     for (int j = 0; j < len; j++) {
         for (int k = 0; k < len; k++) col[k] = m2[k * len + j];
-        //int ilen = i * len;
         for (int i = 0; i < len; i++) {
-            //int jlen = j * len;
             res[i * len + j] = 0;
             for (int k = 0; k < len; k++)
                 res[i * len + j] += m1[i * len + k] * col[k];
